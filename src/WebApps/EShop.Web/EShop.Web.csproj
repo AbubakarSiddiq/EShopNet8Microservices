@@ -1,0 +1,47 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+	<LangVersion>latest</LangVersion>
+	<TypeScriptCompileBlocked>true</TypeScriptCompileBlocked>
+	<TypeScriptToolsVersion>Latest</TypeScriptToolsVersion>
+	<IsPackable>false</IsPackable>
+	<SpaRoot>ClientApp\</SpaRoot>
+	<Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <InvariantGlobalization>true</InvariantGlobalization>
+	<DefaultItemExcludes>$(DefaultItemExcludes);$(SpaRoot)node_modules\**</DefaultItemExcludes>    
+	<UserSecretsId>bf7493dd-73fc-4595-947c-7ffa2761efc0</UserSecretsId>
+    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+    <DockerfileContext>..\..</DockerfileContext>
+  </PropertyGroup>
+	
+	
+	
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.22.0" />
+    <PackageReference Include="Microsoft.AspNetCore.SpaServices.Extensions" Version="8.0.3" />
+    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.19.5" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
+  </ItemGroup>
+
+	<ItemGroup>
+		<!-- Don't publish the SPA source files, but do show them in the project files list -->
+		<Content Remove="$(SpaRoot)**" />
+		<None Remove="$(SpaRoot)**" />
+		<None Include="$(SpaRoot)**" Exclude="$(SpaRoot)node_modules\**;$(SpaRoot)obj\**;$(SpaRoot)dist\**" />
+	</ItemGroup>	
+
+  <!--<ItemGroup>
+    <Folder Include="ClientApp\.angular\cache\14.1.0\angular-webpack\3cc433b4036b1b0f6dec1661e96f2e803e64ec2f\" />
+    <Folder Include="ClientApp\.angular\cache\14.1.0\angular-webpack\3fcebe4e76ab990bd8d2ed8cebbb4183fee4e687\" />
+    <Folder Include="ClientApp\.angular\cache\14.1.0\angular-webpack\c94925a7b7707a212ad71b897a844bff432f32e4\" />
+    <Folder Include="ClientApp\.angular\cache\14.1.0\angular-webpack\e85e2229a1603761724ea75a0b14c79ca7a81c1b\" />
+    <Folder Include="ClientApp\.angular\cache\14.1.0\babel-webpack\" />
+    <Folder Include="ClientApp\obj\Docker\empty\" />
+    <Folder Include="ClientApp\out-tsc\e2e\" />
+    <Folder Include="ClientApp\src\shared\" />
+  </ItemGroup>-->
+
+</Project>

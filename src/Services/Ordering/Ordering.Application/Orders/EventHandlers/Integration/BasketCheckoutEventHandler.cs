@@ -1,6 +1,7 @@
 ﻿using BuildingBlocks.Messaging.Events;
 using MassTransit;
 using Ordering.Application.Orders.Commands.CreateOrder;
+using Ordering.Domain.ValueObjects;
 
 namespace Ordering.Application.Orders.EventHandlers.Integration;
 
@@ -23,7 +24,7 @@ public class BasketCheckoutEventHandler(ISender sender, ILogger<BasketCheckoutEv
 
         var orderDto = new OrderDto(
             Id: orderId,
-            CustomerId: message.CustomerId,
+            CustomerId: new Guid("58c49479-ec65-4de2-86e7-033c546291aa"), // new guid value as customer id.
             OrderName: message.UserName,
             ShippingAddress: addressDto,
             BillingAddress: addressDto,
@@ -31,8 +32,13 @@ public class BasketCheckoutEventHandler(ISender sender, ILogger<BasketCheckoutEv
             Status: Ordering.Domain.Enums.OrderStatus.Pending,
             OrderItems:
             [
-                new OrderItemDto(orderId, new Guid("5334c996-8457-4cf0-815c-ed2b77c4ff61"), 2, 500),
-                new OrderItemDto(orderId, new Guid("c67d6323-e8b1-4bdf-9a75-b0d0d2e7e914"), 1, 400)
+                // order items should come from basket checkout event message.
+                //new OrderItemDto(orderId, new Guid("4f136e9f-ff8c-4c1f-9a33-d12f689bdab8"), 2, 16),
+                //new OrderItemDto(orderId, new Guid("99653F5C-9072-4FBD-A282-533E78BD096C"), 1, 12)
+                
+                // right
+                //new OrderItemDto(orderId, new Guid("6ec1297b-ec0a-4aa1-be25-6726e3b51a27"), 1, 12)
+                new OrderItemDto(orderId, new Guid("C67D6323-E8B1-4BDF-9A75-B0D0D2E7E914"), 1, 12)
             ]);
 
         return new CreateOrderCommand(orderDto);
